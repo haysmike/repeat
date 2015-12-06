@@ -41,7 +41,7 @@
     mpf_set_default_prec(_precision - 1);
     _maxIterations = 1 << 6;
 
-    _superSampleFactor = 1;
+    _superSampleFactor = 2;
 
     return self;
 }
@@ -145,13 +145,12 @@
                         pixel[0] = 0;
                         pixel[1] = 0;
                         pixel[2] = 0;
-                        pixel[3] = 255;
+                        pixel[3] = 4;
 
                         for (int offsetY = 0; offsetY < _superSampleFactor; offsetY++) {
                             for (int offsetX = 0; offsetX < _superSampleFactor; offsetX++) {
-                                double aslkfjd = _centerX + (left + (double)x + (double)offsetX / _superSampleFactor) / _zoom;
-                                mpf_set_d(cx, aslkfjd);
-                                mpf_set_d(cy, (top + (double)y + (double)offsetY / _superSampleFactor) / _zoom + _centerY);
+                                mpf_set_d(cx, _centerX + (left + (double)x + (double)offsetX / _superSampleFactor) / _zoom);
+                                mpf_set_d(cy, _centerY + (top + (double)y + (double)offsetY / _superSampleFactor) / _zoom);
 
                                 mpf_set_d(zx, 0);
                                 mpf_set_d(zy, 0);
